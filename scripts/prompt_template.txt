@@ -1,0 +1,15 @@
+We want to understand the type of contribution made by research papers in NLP. Please label the following abstract with the following contribution types.
+
+Contribution types:
+A. New task or dataset
+B. New model architecture or engineering practice
+C. New algorithm or mathematical innovation
+D. New strategy using existing techniques
+E. Insights on existing data or languages
+F. Insights on existing models
+G. Application of existing techniques to new data
+
+Abstract:
+{abstract}
+
+Choose at most two best-fitting contribution types from the above. Respond ONLY with the corresponding keys, comma-separated.

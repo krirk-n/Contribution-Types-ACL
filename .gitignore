@@ -1,1 +1,5 @@
 acl-publication-info.74k.v2.parquet
+acl-publication-info.64k.parquet
+experiment.ipynb
+.env
+**/__pycache__/
