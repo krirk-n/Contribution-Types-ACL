@@ -1,5 +1,7 @@
 import os
-from openai import AzureOpenAI
+import asyncio
+import time
+from openai import AzureOpenAI, RateLimitError, APIError, Timeout
 from dotenv import load_dotenv
 
 class AzureOpenAIClient:
@@ -23,30 +25,46 @@ class AzureOpenAIClient:
             api_key=self.subscription_key,
         )
 
-    def get_chat_completion(self, messages, max_tokens=4096, temperature=1.0, top_p=1.0, model="gpt-4o"):
-        if model == "o3-mini":
-            response = self.client.chat.completions.create(
-            messages=messages,
-            max_completion_tokens=max_tokens,
-            top_p=top_p,
-            model=model
-            )
-        else:
-            response = self.client.chat.completions.create(
-            messages=messages,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            top_p=top_p,
-            model=model
-            )
-        return response.choices[0].message.content
+    async def get_chat_completion(self, messages, max_tokens=4096, temperature=1.0, top_p=1.0,
+                                  model="gpt-4o", retries=5):
+        for attempt in range(retries):
+            try:
+                # Move blocking call to thread to avoid blocking asyncio loop
+                if model == "o3-mini":
+                    response = await asyncio.to_thread(
+                        self.client.chat.completions.create,
+                        messages=messages,
+                        max_completion_tokens=max_tokens,
+                        top_p=top_p,
+                        model=model
+                    )
+                else:
+                    response = await asyncio.to_thread(
+                        self.client.chat.completions.create,
+                        messages=messages,
+                        max_tokens=max_tokens,
+                        temperature=temperature,
+                        top_p=top_p,
+                        model=model
+                    )
+                
+                return response.choices[0].message.content
+            except (RateLimitError, Timeout, APIError) as e:
+                wait_time = min(2 ** attempt, 30)
+                print(f"[Retry {attempt+1}] Error: {e}. Retrying in {wait_time}s...")
+                await asyncio.sleep(wait_time)
+
+        raise RuntimeError("Max retries exceeded for chat completion.")
 
 # Example usage
 if __name__ == "__main__":
-    azure_client = AzureOpenAIClient()
-    messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "I am going to Paris, what should I see?"}
-    ]
-    response = azure_client.get_chat_completion(messages, model="o3-mini") # "gpt-4o" or "o3-mini" or "gpt-4o-mini"
-    print(response)
+    async def main():
+        azure_client = AzureOpenAIClient()
+        messages = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "I am going to Paris, what should I see?"}
+        ]
+        response = await azure_client.get_chat_completion(messages, model="o3-mini")
+        print(response)
+
+    asyncio.run(main())
