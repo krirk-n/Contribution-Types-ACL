@@ -111,16 +111,16 @@ async def label_papers(input_path, output_path, model="gpt-4o", sample_size=None
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Label paper contributions using Azure OpenAI")
-    parser.add_argument("--input", default="data/acl-publication-info.64k.parquet", help="Input .csv or .parquet file")
+    parser.add_argument("--input", default="data/acl-publication-info.main.yearlysampled100.parquet", help="Input .csv or .parquet file")
     parser.add_argument("--output", help="Output file path (if not provided, a name will be auto-generated)")
     parser.add_argument("--model", default="gpt-4o", help="Model to use (e.g., gpt-4o, o3-mini)")
-    parser.add_argument("--sample", type=int, required=True, help="Number of rows to sample (required)")
+    parser.add_argument("--sample", type=int, default=None, help="Number of rows to sample")
     parser.add_argument("--year", type=int, help="Optional publication year filter")
     args = parser.parse_args()
 
     # === Auto-generate output path if not provided ===
     if args.output is None:
-        sample_part = f"sample{args.sample}"
+        sample_part = f"sample{args.sample if args.sample is not None else 100}"
         year_part = f"{args.year}" if args.year else "all-years"
         args.output = f"result/labelled_{args.model}_{year_part}_{sample_part}.csv"
 
