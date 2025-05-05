@@ -53,25 +53,30 @@ def sample_yearly(df, seed=42, num_samples=100, start_year=2013, end_year=2022):
 
 if __name__ == "__main__":
     # Filter empty abstracts and full texts
-    # df = filter_empty_abstract_and_full_text()
-    df = pd.read_parquet('data/acl-publication-info.64k.parquet')
+    df = filter_empty_abstract_and_full_text()
+    # df = pd.read_parquet('data/acl-publication-info.64k.parquet')
 
     # Filter only main conference papers
-    # df_filtered = filter_only_main_conference(df)
-    # print(df_filtered[:10])  # Display the first 10 rows of the filtered dataframe
-    # df_filtered.to_parquet('data/acl-publication-info.64k.main.parquet', index=False)
+    df_filtered = filter_only_main_conference(df)
+    print(df_filtered[:10])  # Display the first 10 rows of the filtered dataframe
+    df_filtered.to_parquet('data/acl-publication-info.main.parquet', index=False)
+
+    # Sample yearly data
+    df_sampled = sample_yearly(df_filtered, num_samples=100)
+    print(f"Number of rows after sampling: {len(df_sampled)}")
+    df_sampled.to_parquet('data/acl-publication-info.main.yearlysampled100.parquet', index=False)
 
     # df_filtered = pd.read_parquet('data/acl-publication-info.main.parquet')
     # print(f"Number of rows: {len(df_filtered)}")
 
     # Filter only specific field (e.g., "NLP")
-    # df_filtered = filter_only_specific_field(df, "machine translation")
+    df_filtered = filter_only_specific_field(df, "machine translation")
     # print(df_filtered[:10])  # Display the first 10 rows of the filtered dataframe
-    # print(f"Number of rows: {len(df_filtered)}")
-    # df_filtered.to_parquet('data/acl-publication-info.machine-translation.parquet', index=False)
-
-    df_filtered = pd.read_parquet('data/acl-publication-info.machine-translation.parquet')
     print(f"Number of rows: {len(df_filtered)}")
+    df_filtered.to_parquet('data/acl-publication-info.machine-translation.parquet', index=False)
+
+    # df_filtered = pd.read_parquet('data/acl-publication-info.machine-translation.parquet')
+    # print(f"Number of rows: {len(df_filtered)}")
 
     # Sample yearly data
     df_sampled = sample_yearly(df_filtered, num_samples=100)
