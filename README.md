@@ -12,13 +12,13 @@ We investigate how **Contribution Types** of ACL papers evolved over a **10‑ye
 
 | Key   |                                                             Colour                                                             | Description                                    | Example Paper                                                      |
 | ----- | :----------------------------------------------------------------------------------------------------------------------------: | ---------------------------------------------- | ------------------------------------------------------------------ |
-| **A** | <span style="background-color:#1f77b4;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#1f77b4` | New task or dataset                            | *Khanuja et al.* (2024): Creating a new task dataset focusing on cultural adaptation of images.        |
-| **B** | <span style="background-color:#ff7f0e;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#ff7f0e` | New model architecture or engineering practice | *Devlin et al.* (2019): Introducing BERT!                                  |
-| **C** | <span style="background-color:#2ca02c;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#2ca02c` | New algorithm or mathematical innovation       | *Zheng et al.* (2021): Increasing tokenizer vocabulary in an efficient way with KNN sampling. |
-| **D** | <span style="background-color:#d62728;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#d62728` | New strategy using existing techniques         | *Dimakis et al.* (2024): Applying in-context learning techniques to boost low-resource performance.     |
-| **E** | <span style="background-color:#9467bd;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#9467bd` | Insights on existing data or languages         | *Melgarejo et al.* (2022): (Among other things) Compares Quechua to Spanish using WordNets.           |
-| **F** | <span style="background-color:#8c564b;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#8c564b` | Insights on existing models                    | *Robinson et al.* (2023): Evaluating ChatGPT for lowresource machine translation.  |
-| **G** | <span style="background-color:#e377c2;width:16px;height:16px;display:inline-block;border:1px solid #000;"></span><br>`#e377c2` | Application of existing techniques to new data | *Lin & Su* (2021).                                                 |
+| **A** | ![#1f77b4](https://placehold.co/15x15/1f77b4/f03c15.png)`#1f77b4` | New task or dataset                            | *Khanuja et al.* (2024): Creating a new task dataset focusing on cultural adaptation of images.        |
+| **B** | ![#ff7f0e](https://placehold.co/15x15/ff7f0e/f03c15.png)`#ff7f0e` | New model architecture or engineering practice | *Devlin et al.* (2019): Introducing BERT!                                  |
+| **C** | ![#2ca02c](https://placehold.co/15x15/2ca02c/f03c15.png)`#2ca02c` | New algorithm or mathematical innovation       | *Zheng et al.* (2021): Increasing tokenizer vocabulary in an efficient way with KNN sampling. |
+| **D** | ![#d62728](https://placehold.co/15x15/d62728/f03c15.png)`#d62728` | New strategy using existing techniques         | *Dimakis et al.* (2024): Applying in-context learning techniques to boost low-resource performance.     |
+| **E** | ![#9467bd](https://placehold.co/15x15/9467bd/f03c15.png)`#9467bd` | Insights on existing data or languages         | *Melgarejo et al.* (2022): (Among other things) Compares Quechua to Spanish using WordNets.           |
+| **F** | ![#8c564b](https://placehold.co/15x15/8c564b/f03c15.png)`#8c564b` | Insights on existing models                    | *Robinson et al.* (2023): Evaluating ChatGPT for low-resource machine translation.  |
+| **G** | ![#e377c2](https://placehold.co/15x15/e377c2/f03c15.png)`#e377c2` | Application of existing techniques to new data | *Lin & Su* (2021).  |
 
 *(Colour palette is used consistently across all plots.)*
 
